@@ -34,7 +34,7 @@ function App() {
               }}
               onChange={(e) => setUserName(e.target.value)}
               placeholder="Enter your Name..."
-              className="w-full bg-transparent border-slate-300 focus:border-slate-400 text-white placeholder:text-slate-300"
+              className="w-[50%] bg-transparent border-slate-300 focus:border-slate-400 text-white placeholder:text-slate-300"
             />
             <button
               onClick={() => setName(userName)}

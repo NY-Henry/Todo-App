@@ -14,50 +14,6 @@ interface TasksState {
   filterCompleted: () => void;
 }
 
-// const initialTasks: TaskTypes[] = [
-//   {
-//     id: "0",
-//     title: "Complete React project",
-//     completed: false,
-//     dueDate: new Date("2025-03-01"),
-//     category: "Work",
-//     createdAt: new Date("2025-02-18"),
-//   },
-//   {
-//     id: "1",
-//     title: "Buy groceries",
-//     completed: false,
-//     dueDate: new Date("2025-02-20"),
-//     category: "Personal",
-//     createdAt: new Date("2025-02-17"),
-//   },
-
-//   {
-//     id: "3",
-//     title: "Attend team meeting",
-//     completed: true,
-//     dueDate: new Date("2025-02-15"),
-//     category: "Work",
-//     createdAt: new Date("2025-02-10"),
-//   },
-//   {
-//     id: "4",
-//     title: "Go to the gym",
-//     completed: false,
-//     dueDate: new Date(),
-//     category: "Health",
-//     createdAt: new Date("2025-02-16"),
-//   },
-//   {
-//     id: "5",
-//     title: "Read a book",
-//     completed: true,
-//     dueDate: new Date("2025-02-14"),
-//     category: "Personal",
-//     createdAt: new Date("2025-02-10"),
-//   },
-// ];
-
 const localTasks = getTasks() || [];
 
 export const useTasksStore = create<TasksState>((set) => ({

@@ -10,11 +10,11 @@ export function setTasks(value: TaskTypes[]) {
 
 export function getTasks() {
   try {
-    const item = localStorage.getItem("tasks");
-    if (item) {
-      return JSON.parse(item) as TaskTypes[];
+    const tasks = localStorage.getItem("tasks");
+    if (tasks) {
+      return JSON.parse(tasks) as TaskTypes[];
     } else {
-      return undefined;
+      return [];
     }
   } catch (error) {
     console.log(`Error getting file from local storage`, error);
