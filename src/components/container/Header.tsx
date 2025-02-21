@@ -14,6 +14,7 @@ import { DatePicker } from "./Calender";
 import { TaskTypes } from "@/types/taskTypes";
 import { useTasksStore } from "@/stores/taskstore";
 import { useDateStore } from "@/stores/dateStore";
+import { useName } from "@/stores/name";
 
 const DialogComponent = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -25,12 +26,19 @@ const DialogComponent = () => {
     dueDate: new Date(),
     id: "",
   });
+  const [error, setError] = useState<boolean>(false);
 
   // Task Store
   const { addTask } = useTasksStore();
   const { date } = useDateStore();
+  const { name } = useName();
 
   function handleTaskAdd() {
+    if (!task.title || !task.category) {
+      setError(true);
+      return;
+    }
+
     setIsOpen(false);
     addTask({
       title: task.title,
@@ -76,12 +84,16 @@ const DialogComponent = () => {
             <Input
               placeholder="Eg: Do Laundry..."
               value={task?.title}
-              onChange={(e) =>
+              maxLength={30}
+              onChange={(e) => {
+                if (e.target.value.length > 1) {
+                  setError(false);
+                }
                 setTask((prev) => ({
                   ...prev,
                   title: e.target.value,
-                }))
-              }
+                }));
+              }}
             />
           </div>
 
@@ -91,12 +103,16 @@ const DialogComponent = () => {
             <Input
               placeholder="Eg: Study, Personal, Work etc..."
               value={task?.category}
-              onChange={(e) =>
+              maxLength={15}
+              onChange={(e) => {
+                if (e.target.value.length > 1) {
+                  setError(false);
+                }
                 setTask((prev) => ({
                   ...prev,
                   category: e.target.value,
-                }))
-              }
+                }));
+              }}
             />
           </div>
 
@@ -114,6 +130,10 @@ const DialogComponent = () => {
             >
               Save Task
             </Button>
+            <p className="text-red-500 text-sm">
+              {error &&
+                `${name ? name : "Guest"} PLEASE ENTER ALL THE FIELDS!!`}
+            </p>
           </DialogFooter>
         </DialogContent>
       )}

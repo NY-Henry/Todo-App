@@ -26,7 +26,7 @@ function App() {
             <Input
               type="text"
               value={userName}
-              minLength={5}
+              maxLength={8}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   setName(userName);
@@ -45,7 +45,7 @@ function App() {
           </div>
         )}
 
-        {/* Filer Tasks */}
+        {/* Filter Tasks */}
         <div className="flex justify-between items-center ml-4 my-4 mr-4">
           <h1 className="text-lg text-slate-300">Filter Tasks:</h1>
 

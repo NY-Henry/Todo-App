@@ -1,9 +1,11 @@
 import Task from "../ui2/Task";
 import { ScrollArea } from "../ui/scroll-area";
 import { useTasksStore } from "@/stores/taskstore";
+import { useName } from "@/stores/name";
 
 const TasksList = () => {
   const { tasks } = useTasksStore();
+  const { name } = useName();
 
   return (
     <>
@@ -14,7 +16,7 @@ const TasksList = () => {
           <>
             <hr />
             <p className="text-2xl font-semibold text-gray-500 text-center py-8">
-              No Tasks to show!! Please Add Tasks
+              {name ? name : "Guest"} Please Add Tasks!
             </p>
           </>
         )}
