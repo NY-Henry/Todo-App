@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type DateType = Date | undefined;
+export type DateType = Date | number | string;
 
 interface DateState {
   date: DateType;
@@ -8,6 +8,6 @@ interface DateState {
 }
 
 export const useDateStore = create<DateState>((set) => ({
-  date: undefined,
+  date: new Date(),
   setDate: (date: DateType) => set({ date }),
 }));

@@ -2,6 +2,7 @@ import { useTasksStore } from "@/stores/taskstore";
 import TaskDetails from "../container/TaskDetails";
 import { useState } from "react";
 import { TaskTypes } from "@/types/taskTypes";
+import { dateFormater } from "@/utils/formatDate";
 // import { formatDate } from "@/utils/formatDate";
 
 const Task = ({ task }: { task: TaskTypes }) => {
@@ -17,7 +18,7 @@ const Task = ({ task }: { task: TaskTypes }) => {
       {/* Title */}
       <h1
         className={`text-lg select-none font-semibold ${
-          task.completed ? "line-through" : ""
+          task.completed ? "line-through opacity-70" : ""
         }`}
       >
         {task.title}
@@ -48,7 +49,13 @@ const Task = ({ task }: { task: TaskTypes }) => {
                 : formatDate(task.dueDate)
             }`
           )} */}
-          {/* {task.dueDate?.toLocaleDateString()} */}
+          {task.completed ? (
+            <p className="text-green-500 opacity-80 ">Done</p>
+          ) : (
+            `${
+              !task.dueDate ? "Task not scheduled" : dateFormater(task.dueDate)
+            }`
+          )}
         </p>
         <p className="text-slate-300 mb-0.5 select-none">{task.category}</p>
       </div>

@@ -1,5 +1,6 @@
 import { TaskTypes } from "@/types/taskTypes";
 import { getTasks, setTasks } from "@/utils/localStorage";
+import { sortTasks } from "@/utils/sortTasks";
 import { create } from "zustand";
 
 interface TasksState {
@@ -93,14 +94,20 @@ export const useTasksStore = create<TasksState>((set) => ({
   filterAll() {
     set(() => {
       const allTasks = getTasks();
-      return { tasks: allTasks };
+
+      const sortedTasks = allTasks ? sortTasks(allTasks) : undefined;
+
+      return { tasks: sortedTasks || allTasks };
     });
   },
 
   filterActive() {
     set(() => {
       const updatedTasks = getTasks()?.filter((t) => !t.completed);
-      return { tasks: updatedTasks };
+
+      const sortedTasks = updatedTasks ? sortTasks(updatedTasks) : undefined;
+
+      return { tasks: sortedTasks || updatedTasks };
     });
   },
 

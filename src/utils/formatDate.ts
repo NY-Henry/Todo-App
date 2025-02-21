@@ -1,5 +1,21 @@
-// import { DateType } from "@/stores/dateStore";
+import { isToday, isTomorrow, differenceInDays, format } from "date-fns";
 
-// export function formatDate(date: DateType) {
-//   return date?.toLocaleDateString("en-US") ?? "N/A";
-// }
+export function dateFormater(date: string | number | Date) {
+  const today = new Date();
+
+  if (isToday(date)) {
+    return "Today";
+  }
+
+  if (isTomorrow(date)) {
+    return "Tommorow";
+  }
+
+  const diff = differenceInDays(today, date);
+
+  if (diff > 0) {
+    return `${diff} days ago`;
+  } else {
+    return format(date, "yyyy-MM-dd");
+  }
+}

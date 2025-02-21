@@ -45,8 +45,8 @@ const DialogComponent = () => {
       title: "",
       category: "",
       completed: false,
-      createdAt: undefined,
-      dueDate: undefined,
+      createdAt: new Date(),
+      dueDate: new Date(),
       id: "",
     }));
   }
@@ -54,7 +54,10 @@ const DialogComponent = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button onClick={() => setIsOpen(true)} className="p-6 rounded-none">
+        <Button
+          onClick={() => setIsOpen(true)}
+          className="p-6 text-xl rounded-none border border-t-0 border-white"
+        >
           Add Task
         </Button>
       </DialogTrigger>

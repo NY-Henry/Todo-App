@@ -23,7 +23,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
   task,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { deleteTask, markAsDOne } = useTasksStore();
+  const { deleteTask, markAsDOne, filterActive } = useTasksStore();
 
   return (
     <Dialog
@@ -71,9 +71,9 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
             className="bg-red-600 hover:bg-red-500"
             onClick={(e) => {
               e.stopPropagation();
-
-              setIsOpen(false);
               deleteTask(task);
+              filterActive();
+              setIsOpen(false);
             }}
           >
             DELETE TASK
@@ -82,6 +82,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
             onClick={(e) => {
               e.stopPropagation();
               markAsDOne(task);
+              filterActive();
               setIsOpen(false);
             }}
             className="bg-green-500"

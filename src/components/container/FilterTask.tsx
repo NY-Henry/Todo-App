@@ -8,11 +8,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTasksStore } from "@/stores/taskstore";
+import { useEffect } from "react";
 
 const FilterTasks = () => {
   const { filterAll, filterActive, filterCompleted } = useTasksStore();
+
+  useEffect(() => {
+    filterActive();
+  }, []);
+
   return (
     <Select
+      defaultValue="active"
       onValueChange={(value) =>
         value === "all"
           ? filterAll()
