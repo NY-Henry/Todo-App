@@ -20,3 +20,20 @@ export function getTasks() {
     console.log(`Error getting file from local storage`, error);
   }
 }
+
+export function setUserName(name: string) {
+  try {
+    localStorage.setItem("name", JSON.stringify(name));
+  } catch (error) {
+    console.log(`Error setting name to local storage`, error);
+  }
+}
+
+export function getUserName() {
+  try {
+    const name = localStorage.getItem("name");
+    return name ? JSON.parse(name) : undefined;
+  } catch (error) {
+    console.log(`Error getting name from local storage`, error);
+  }
+}
