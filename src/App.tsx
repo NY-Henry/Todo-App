@@ -10,7 +10,7 @@ function App() {
   const [userName, setUserName] = useState<string>("");
   return (
     // Section
-    <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-zinc-900 text-white">
+    <section className="flex items-center justify-center min-h-screen bg-gradient-to-br bg-black text-white">
       {/* The main Div that contains the app */}
       <div className="mx-auto rounded-lg shadow-sm shadow-white border min-h-[500px] min-w-[300px] sm:min-w-[400px] md:min-w-[500px]">
         {/* The app content goes here */}

@@ -3,6 +3,9 @@ import TaskDetails from "../container/TaskDetails";
 import { useState } from "react";
 import { TaskTypes } from "@/types/taskTypes";
 import { dateFormater } from "@/utils/formatDate";
+import { Button } from "../ui/button";
+// import EditTask from "../container/EditTask";
+// import { Edit2Icon } from "lucide-react";
 // import { formatDate } from "@/utils/formatDate";
 
 const Task = ({ task }: { task: TaskTypes }) => {
@@ -26,10 +29,26 @@ const Task = ({ task }: { task: TaskTypes }) => {
 
       {/* Task Details */}
       {showTaskDetails && (
-        <TaskDetails
-          task={task}
-          isTaskDetailsOpen={() => setShowTaskDetails(false)}
-        />
+        <div className="flex space-x-2 items-center md:space-x-6">
+          <TaskDetails
+            task={task}
+            isTaskDetailsOpen={() => setShowTaskDetails(false)}
+          />
+
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              markAsDOne(task);
+            }}
+            className=" border text-white"
+          >
+            {task.completed ? "RESTORE TASK" : "Mark As DOne"}
+          </Button>
+
+          {/* <EditTask task={task}>
+            <Edit2Icon />
+          </EditTask> */}
+        </div>
       )}
 
       {/* Due Date and Category */}

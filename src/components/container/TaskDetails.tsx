@@ -36,14 +36,16 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
       }}
     >
       <DialogTrigger asChild>
-        <Button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-          className="px-6 bg-green-800 rhover:bg-green-600 rounded-2xl text-md "
-        >
-          Details
-        </Button>
+        {!task.completed && (
+          <Button
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            className="px-6  bg-white hover:bg-white text-black rounded-2xl  text-md "
+          >
+            Details
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -78,6 +80,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
           >
             DELETE TASK
           </Button>
+
           <Button
             onClick={(e) => {
               e.stopPropagation();
@@ -85,7 +88,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
               filterActive();
               setIsOpen(false);
             }}
-            className="bg-green-500"
+            className="bg-black text-white"
           >
             {task.completed ? "RESTORE TASK" : "Mark As DOne"}
           </Button>
